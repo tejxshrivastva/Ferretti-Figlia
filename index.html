@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ferretti &amp; Figlia</title>
+<meta name="description" content="Sourdough, pastries, and Italian tradition, baked fresh in Melbourne. Ferretti &amp; Figlia — artisan bakery in Carlton &amp; Brunswick East.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ferretti &amp; Figlia — Artisan Italian Bakery, Melbourne">
+<meta property="og:description" content="Sourdough, pastries, and Italian tradition, baked fresh in Melbourne. Ferretti &amp; Figlia — Carlton &amp; Brunswick East.">
+<meta property="og:image" content="assets/thumbnail.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="assets/thumbnail.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Great+Vibes&family=Manrope:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#FCEFEC; --ceramic:#FADFD8; --card:#ffffff;
+  --sb-green:#463239; --accent:#ED6B86; --accent-deep:#D6516C;
+  --house:#463239; --uplift:#C6AD94; --green-light:#7FB285; --gold:#C6AD94; --gold-warm:#C6AD94;
+  --nav-green:#4F8A64;
+  --ink:rgba(70,50,57,.92); --ink-soft:rgba(70,50,57,.60);
+  --white-soft:rgba(255,255,255,.70); --is-bg:#F3DAD3;
+  --serif:'Lora',Georgia,serif; --sans:'Manrope',system-ui,sans-serif;
+  --shadow-card:0 1px 2px rgba(70,50,57,.05),0 6px 16px -8px rgba(70,50,57,.14);
+  --shadow-hover:0 4px 10px rgba(70,50,57,.06),0 20px 44px -18px rgba(70,50,57,.30);
+  --shadow-nav:0 2px 8px rgba(70,50,57,.08),0 12px 30px -14px rgba(70,50,57,.22);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--canvas);color:var(--ink);font-family:var(--sans);letter-spacing:-.01em;-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:url('assets/cur-cake.png') 4 4, auto;}
+a,button,label,summary,[role="button"],[onclick],input[type="submit"],input[type="button"],.collage-item{cursor:url('assets/cur-strawberry.png') 6 4, pointer !important;}
+a{color:var(--accent);text-decoration:none;}
+a:hover{color:var(--accent-deep);}
+img{max-width:100%;}
+@keyframes jiggle{0%,100%{transform:rotate(-0.9deg) scale(1.03)}50%{transform:rotate(0.9deg) scale(1.03)}}
+.collage-item{cursor:grab;touch-action:none}
+.collage-item:active{cursor:grabbing}
+.shine-card{position:relative;border:1.5px solid var(--accent)}
+.shine-card::after{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.15) 46%,rgba(255,255,255,.65) 50%,rgba(255,255,255,.15) 54%,transparent 62%);transform:translateX(-130%);opacity:0}
+.shine-card.go::after{animation:cardShine 3.4s cubic-bezier(.33,0,.3,1) infinite}
+@keyframes cardShine{0%{transform:translateX(-130%);opacity:0}5%{opacity:1}50%{transform:translateX(130%);opacity:1}53%{opacity:0}100%{transform:translateX(130%);opacity:0}}
+.reveal-w{display:inline-block;opacity:0;transform:translateY(.45em);transition:opacity .5s ease,transform .5s ease;will-change:opacity,transform}
+.reveal-w.in{opacity:1;transform:none}
+.reveal-word{display:inline-block;white-space:nowrap}
+.reveal-soft{opacity:0;transition:opacity .8s ease}
+.reveal-soft.in{opacity:1}
+@media (prefers-reduced-motion:reduce){.reveal-w,.reveal-soft{opacity:1 !important;transform:none !important;transition:none}}
+
+/* Header / floating nav */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:50;padding:clamp(10px,1.4vw,18px) clamp(12px,2.5vw,26px);pointer-events:none;}
+.nav-bar{pointer-events:auto;max-width:70%;margin:0 auto;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.75);box-shadow:0 8px 30px rgba(70,50,57,.12);border-radius:20px;overflow:hidden;transition:max-width .45s cubic-bezier(.4,0,.2,1),box-shadow .45s ease,background .45s ease;}
+.nav-inner{padding:7px clamp(16px,2vw,26px);display:flex;align-items:center;gap:18px;}
+.nav-logo{flex:0 0 auto;display:block;line-height:0;}
+.nav-logo img{height:38px;width:auto;display:block;}
+.nav-links{flex:1;display:flex;align-items:center;justify-content:flex-end;gap:clamp(20px,2.2vw,38px);}
+.nav-links a{font-size:13px;font-weight:600;letter-spacing:.005em;color:var(--nav-green);transition:color .2s ease,transform .2s ease;}
+.nav-links a:hover{color:var(--accent);transform:translateY(-1px);}
+.nav-mobile{margin-left:auto;display:none;align-items:center;gap:10px;}
+.nav-cta{font-size:11.2px;font-weight:700;color:#fff;background:var(--accent);padding:9px 18px;border-radius:50px;transition:transform .15s ease;}
+.nav-cta:active{transform:scale(.95);}
+.hamburger{display:flex;flex-direction:column;gap:5px;background:none;border:none;padding:8px;}
+.hamburger span{width:24px;height:2px;background:var(--ink);display:block;border-radius:2px;}
+.mobile-menu{display:none;border-top:1px solid var(--ceramic);background:var(--canvas);padding:8px clamp(16px,4vw,40px) 18px;flex-direction:column;gap:2px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-size:13.6px;font-weight:500;color:var(--ink);padding:12px 0;border-bottom:1px solid var(--ceramic);}
+.mobile-menu a.hl{font-weight:700;color:var(--accent);}
+.mobile-menu a.call{font-size:12.8px;color:var(--ink-soft);border-bottom:none;}
+@media(max-width:900px){.nav-links{display:none;}.nav-mobile{display:flex;}}
+
+/* Hero */
+.hero{position:relative;min-height:100dvh;display:flex;align-items:center;}
+.hero-bg{position:absolute;inset:0;z-index:0;}
+.hero-bg video{width:100%;height:100%;object-fit:cover;display:block;}
+.hero-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(0,0,0,.55),rgba(0,0,0,.35) 45%,rgba(0,0,0,.65));pointer-events:none;}
+.hero-inner{position:relative;z-index:2;max-width:1280px;margin:0 auto;width:100%;padding:clamp(36px,7vw,92px) clamp(16px,4vw,40px);pointer-events:none;text-align:center;}
+.hero-eyebrow{text-transform:uppercase;letter-spacing:.15em;font-size:10.4px;font-weight:700;color:var(--green-light);margin:0 0 16px;}
+.hero-title{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;color:#fff;font-size:clamp(64px,11.5vw,168px);line-height:.96;margin:0;letter-spacing:.01em;text-wrap:balance;}
+.hero-tag{color:var(--gold-warm);font-size:clamp(19px,2.4vw,27px);font-weight:500;line-height:1.5;margin:26px 0 40px;text-wrap:pretty;font-family:'Cormorant Garamond',Georgia,serif;}
+.hero-btns{display:flex;flex-wrap:wrap;gap:14px;pointer-events:auto;justify-content:center;}
+.hero-btn{font-size:11.2px;font-weight:700;color:var(--nav-green);background:#fff;padding:9px 18px;border-radius:50px;transition:color .2s ease,transform .2s ease;}
+.hero-btn:hover{color:var(--accent);transform:translateY(-1px);}
+.hero-btn:active{transform:scale(.95);}
+
+/* Story */
+.story{background-color:var(--canvas);background-image:linear-gradient(180deg,rgba(252,239,236,.82),rgba(252,239,236,.82)),url('assets/story-bg.jpg');background-size:auto,480px auto;background-repeat:repeat,repeat;scroll-margin-top:90px;}
+.story-wrap{max-width:1440px;margin:0 auto;padding:clamp(40px,6vw,88px) clamp(12px,2vw,28px) 0;}
+.story-desktop{display:flex;align-items:stretch;justify-content:center;gap:0;}
+.story-col{position:relative;z-index:2;flex:0 0 clamp(210px,24vw,340px);display:flex;flex-direction:column;justify-content:space-between;gap:clamp(10px,1.4vw,18px);padding:clamp(10px,1.6vw,22px) 0;}
+.collage-item{position:relative;border-radius:12px;overflow:hidden;box-shadow:0 12px 26px rgba(0,0,0,.16);aspect-ratio:4/3;}
+.collage-item>div{position:absolute;inset:0;}
+.collage-item img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;}
+.story-box{flex:none;width:470px;align-self:center;margin:clamp(28px,4vw,64px) 18px;position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:rgba(255,255,255,.28);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.85);border-radius:20px;box-shadow:0 30px 70px rgba(70,50,57,.22),inset 0 1px 0 rgba(255,255,255,.7);padding:clamp(30px,3.4vw,52px) clamp(22px,2.6vw,38px);}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:10.4px;font-weight:700;color:var(--accent);margin:0 0 16px;}
+.story-box h2{font-family:var(--serif);font-weight:600;font-size:clamp(28px,3.4vw,48px);line-height:1.05;margin:0 0 22px;color:var(--sb-green);text-wrap:balance;}
+.story-box p{font-size:13.2px;font-weight:500;line-height:1.75;color:var(--ink-soft);margin:0 0 16px;text-wrap:pretty;max-width:46ch;text-align:justify;}
+.story-box p:last-child{margin-bottom:0;}
+.story-box em{font-style:italic;color:var(--sb-green);}
+.story-mobile{display:none;flex-direction:column;align-items:center;gap:24px;}
+.story-mobile .m-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;}
+.story-mobile .m-6{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;width:100%;}
+.story-mobile .m-tile{position:relative;aspect-ratio:1;border-radius:12px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.14);}
+.story-mobile .m-tile img{width:100%;height:100%;object-fit:cover;display:block;}
+.story-mobile .m-text{display:flex;flex-direction:column;align-items:center;text-align:center;}
+.story-mobile h2{font-family:var(--serif);font-weight:600;font-size:clamp(26px,7vw,38px);line-height:1.06;margin:0 0 18px;color:var(--sb-green);text-wrap:balance;}
+.story-mobile p{font-size:13.2px;font-weight:500;line-height:1.75;color:var(--ink-soft);margin:0 0 14px;text-wrap:pretty;}
+.story-mobile em{font-style:italic;color:var(--sb-green);}
+@media(max-width:900px){.story-desktop{display:none;}.story-mobile{display:flex;}}
+
+/* What we make */
+.what{background:linear-gradient(180deg,#fbe3ec 0%,#fbe3ec 72%,var(--canvas) 100%);scroll-margin-top:90px;}
+.what-wrap{max-width:1280px;margin:0 auto;padding:clamp(56px,8vw,120px) clamp(16px,4vw,40px) clamp(20px,2.5vw,36px);}
+.what-head{margin:0 0 clamp(16px,2vw,24px);}
+.what-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(27.2px,4vw,46.4px);line-height:1.04;margin:0 0 16px;color:var(--sb-green);text-wrap:balance;}
+.what-head p{font-size:13.2px;font-weight:500;line-height:1.7;color:var(--ink-soft);margin:0;text-align:justify;}
+.cat-chips{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1vw,14px);margin:0 0 clamp(36px,4.5vw,60px);}
+.chip{display:flex;align-items:center;gap:12px;padding:13px 15px;background:var(--card);border:1.5px solid var(--accent);border-radius:11px;box-shadow:var(--shadow-card);color:var(--ink);transition:transform .2s ease,box-shadow .2s ease;}
+.chip:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(0,0,0,.15);}
+.chip img{flex:none;width:26px;height:26px;object-fit:contain;}
+.chip .c-t{min-width:0;}
+.chip .c-t b{display:block;font-family:var(--serif);font-weight:600;font-size:15px;color:var(--sb-green);line-height:1.1;}
+.chip .c-t span{display:block;font-size:10.5px;font-weight:500;color:var(--ink-soft);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.chip .arw{margin-left:auto;color:var(--accent);font-size:15px;font-weight:700;}
+.cat-block{margin-bottom:clamp(40px,5vw,72px);scroll-margin-top:90px;}
+.cat-block-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;padding-bottom:16px;margin-bottom:26px;border-bottom:1px solid rgba(0,0,0,.1);}
+.cat-block-head h3{font-family:var(--serif);font-weight:600;font-size:clamp(20.8px,2.72vw,30.4px);margin:0;color:var(--sb-green);}
+.cat-block-head p{font-size:12px;font-weight:500;color:var(--ink-soft);margin:0;}
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.prod{background:var(--card);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-card);transition:transform .25s ease,box-shadow .25s ease;}
+.prod.shine-card:hover{transform:scale(1.035);box-shadow:0 14px 32px rgba(0,0,0,.16);}
+.slot{position:relative;aspect-ratio:5/4;background:var(--is-bg);overflow:hidden;}
+.slot .slot-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:14px;font-family:var(--serif);font-size:13px;font-weight:600;color:rgba(70,50,57,.5);}
+.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.prod-body{padding:16px 16px 18px;display:flex;flex-direction:column;flex:1;}
+.prod-name{display:flex;align-items:center;gap:8px;margin:0 0 6px;}
+.veg{flex:none;width:14px;height:14px;border:1.5px solid #1a7a3a;border-radius:3px;display:flex;align-items:center;justify-content:center;}
+.veg span{width:6px;height:6px;border-radius:50%;background:#1a7a3a;}
+.prod-name h4{font-weight:700;font-size:14.4px;margin:0;color:var(--ink);}
+.prod-desc{font-size:11.2px;font-weight:500;line-height:1.5;color:var(--ink-soft);margin:0 0 8px;text-wrap:pretty;flex:1;}
+.prod-meta{font-size:10.5px;font-weight:600;color:var(--ink-soft);margin:0 0 12px;letter-spacing:.01em;}
+.prod-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.prod-price{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--sb-green);}
+.btn-add{display:flex;align-items:center;gap:5px;height:30px;padding:0 16px;border:1.5px solid var(--accent);border-radius:999px;background:transparent;color:var(--accent);font-size:12px;font-weight:700;transition:background .15s,color .15s;}
+.btn-add:hover{background:var(--accent);color:#fff;}
+.stepper{display:flex;align-items:center;border:1.5px solid var(--accent);border-radius:999px;overflow:hidden;}
+.stepper button{width:30px;height:30px;border:none;background:transparent;color:var(--accent);font-size:18px;font-weight:700;line-height:1;}
+.stepper span{min-width:20px;text-align:center;font-size:13px;font-weight:700;color:var(--accent);}
+@media(max-width:1024px){.prod-grid{grid-template-columns:repeat(2,1fr);}.cat-chips{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.prod-grid{grid-template-columns:1fr;}}
+
+/* Locations */
+.locations{background-color:var(--canvas);background-image:linear-gradient(180deg,rgba(252,239,236,.82),rgba(252,239,236,.82)),url('assets/story-bg.jpg');background-size:auto,480px auto;background-repeat:repeat,repeat;scroll-margin-top:90px;}
+.loc-wrap{max-width:1280px;margin:0 auto;padding:clamp(24px,3vw,44px) clamp(16px,4vw,40px) clamp(56px,8vw,120px);}
+.loc-head{max-width:640px;margin:0 auto clamp(36px,5vw,56px);text-align:center;}
+.loc-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(27.2px,4vw,46.4px);line-height:1.04;margin:0;color:var(--sb-green);text-wrap:balance;}
+.loc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.4vw,32px);max-width:860px;margin:0 auto;}
+.loc-card{position:relative;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-card);transition:transform .25s ease,box-shadow .25s ease;}
+.loc-card:hover{transform:scale(1.035);box-shadow:0 14px 32px rgba(0,0,0,.16);}
+.loc-photo{position:relative;aspect-ratio:4/5;min-height:380px;background:var(--is-bg);}
+.loc-photo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.loc-grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,26,31,.44) 0%,rgba(40,26,31,.5) 40%,rgba(40,26,31,.82) 78%,rgba(40,26,31,.93) 100%);}
+.loc-body{position:absolute;inset:0;padding:clamp(24px,3vw,38px);display:flex;flex-direction:column;justify-content:flex-end;gap:16px;}
+.loc-tag{text-transform:uppercase;letter-spacing:.13em;font-size:10px;font-weight:700;color:var(--gold-warm);margin:0 0 9px;}
+.loc-body h3{font-family:var(--serif);font-weight:600;font-size:clamp(26px,2.6vw,33px);margin:0 0 9px;color:#fff;text-wrap:balance;}
+.loc-addr{font-size:13px;font-weight:500;color:rgba(255,255,255,.82);margin:0;line-height:1.5;}
+.loc-hours{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:12.6px;font-weight:500;color:rgba(255,255,255,.94);padding-top:16px;border-top:1px solid rgba(255,255,255,.24);}
+.loc-hours .d{color:rgba(255,255,255,.72);}
+.loc-hours .t{text-align:right;font-variant-numeric:tabular-nums;}
+.loc-phone{font-size:13.5px;font-weight:700;color:#fff;letter-spacing:.01em;}
+.loc-map{position:relative;height:160px;}
+.loc-map iframe{width:100%;height:100%;border:0;display:block;}
+.loc-map a{position:absolute;inset:0;}
+@media(max-width:1024px){.loc-grid{grid-template-columns:1fr;max-width:440px;}}
+
+/* Footer */
+.ff-foot{background:#463239;color:#fff;font-family:var(--sans);letter-spacing:-.01em;}
+.ff-foot-inner{max-width:1280px;margin:0 auto;padding:clamp(48px,6vw,84px) clamp(16px,4vw,40px) 0;}
+.ff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:clamp(28px,4vw,56px);}
+.ff-brand{grid-column:1/-1;}
+.ff-brand img{height:82px;width:auto;display:block;margin:0 auto;filter:brightness(0) invert(1);opacity:.9;}
+.ff-brand p{font-family:var(--serif);font-style:italic;font-weight:500;font-size:16px;line-height:1.45;color:var(--white-soft);margin:18px 0 0;text-align:center;}
+.ff-col h4{text-transform:uppercase;letter-spacing:.12em;font-size:9.6px;font-weight:700;color:var(--gold);margin:0 0 16px;}
+.ff-links{display:flex;flex-direction:column;gap:11px;}
+.ff-links a{color:#fff;font-size:12px;font-weight:500;}
+.ff-links a.hl{color:var(--green-light);font-weight:700;}
+.ff-col p{font-size:11.6px;font-weight:500;line-height:1.6;color:var(--white-soft);margin:0 0 8px;}
+.ff-col a.phone{color:#fff;font-size:11.6px;font-weight:600;}
+.ff-social{display:flex;gap:12px;margin-top:6px;}
+.ff-social a{color:#fff;font-size:11.2px;font-weight:600;border:1px solid rgba(255,255,255,.28);padding:8px 16px;border-radius:50px;transition:all .2s ease;}
+.ff-social a:hover{background:rgba(255,255,255,.1);}
+.ff-bottom{margin-top:clamp(40px,5vw,64px);padding:22px 0;border-top:1px solid rgba(255,255,255,.15);display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;}
+.ff-bottom p{font-size:10.4px;font-weight:500;color:var(--white-soft);margin:0;}
+
+/* Sticky cart */
+.cart-dock{position:fixed;left:0;right:0;bottom:0;z-index:200;display:flex;justify-content:center;padding:0 16px 20px;pointer-events:none;}
+.cart-dock[hidden]{display:none;}
+.cart-panel{pointer-events:auto;width:min(460px,100%);background:var(--house);color:#fff;border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.35);overflow:hidden;}
+.cart-list{max-height:48vh;overflow-y:auto;padding:18px 20px 4px;}
+.cart-list[hidden]{display:none;}
+.cart-list-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 14px;}
+.cart-list-head span{font-family:var(--serif);font-size:19px;font-weight:600;}
+.cart-list-head button{background:transparent;border:none;color:var(--white-soft);font-size:20px;line-height:1;}
+.cart-line{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.12);}
+.cart-line .info{flex:1;min-width:0;}
+.cart-line .info p{margin:0;}
+.cart-line .info .n{font-size:13px;font-weight:700;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.cart-line .info .s{font-size:11px;color:var(--white-soft);}
+.cart-line .stepper{border-color:rgba(255,255,255,.4);}
+.cart-line .stepper button{color:#fff;width:28px;height:28px;font-size:16px;}
+.cart-line .stepper span{color:#fff;min-width:18px;font-size:12px;}
+.cart-bar{display:flex;align-items:center;gap:14px;padding:14px 20px;}
+.cart-summary{flex:none;display:flex;flex-direction:column;align-items:flex-start;background:transparent;border:none;color:#fff;text-align:left;}
+.cart-summary .lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--white-soft);}
+.cart-summary .tot{font-family:var(--serif);font-size:20px;font-weight:600;}
+.cart-wa{flex:1;display:flex;align-items:center;justify-content:center;gap:9px;height:48px;border-radius:999px;background:#25D366;color:#0a3d1c;font-size:14px;font-weight:800;letter-spacing:.01em;}
+.cart-wa:hover{color:#0a3d1c;}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-bar" data-nav-bar>
+    <div class="nav-inner">
+      <a href="#top" class="nav-logo" aria-label="Ferretti &amp; Figlia — home">
+        <img src="assets/logo-trimmed.png" alt="Ferretti &amp; Figlia">
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#story">Our Story</a>
+        <a href="#what">What We Make</a>
+        <a href="Wholesale.html">Wholesale &amp; Catering</a>
+        <a href="#locations">Visit Us</a>
+      </nav>
+      <div class="nav-mobile">
+        <a href="Wholesale.html" class="nav-cta">Wholesale</a>
+        <button class="hamburger" type="button" aria-label="Menu" aria-expanded="false" data-menu-toggle>
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <nav class="mobile-menu" data-mobile-menu aria-label="Mobile">
+      <a href="#story" data-menu-close>Our Story</a>
+      <a href="#what" data-menu-close>What We Make</a>
+      <a href="Wholesale.html" class="hl">Wholesale &amp; Catering</a>
+      <a href="tel:+919399734130" class="call">Call +91 93997 34130</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section id="top" class="hero">
+    <div class="hero-bg">
+      <video id="heroVideo" src="assets/hero.mp4" poster="assets/hero-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+    </div>
+    <div class="hero-shade"></div>
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Artisan Italian Bakery · Melbourne</p>
+      <h1 class="hero-title">Ferretti &amp; Figlia</h1>
+      <p class="hero-tag">Sourdough, pastries, and Italian tradition, baked fresh in Melbourne since&nbsp;1996.</p>
+      <div class="hero-btns">
+        <a href="#what" class="hero-btn">What We Make</a>
+        <a href="Wholesale.html" class="hero-btn">Wholesale &amp; Catering</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section id="story" class="story">
+    <div class="story-wrap">
+      <div class="story-desktop">
+        <div class="story-col">
+          <div class="collage-item" data-rot="-2.5" style="align-self:flex-end;width:82%;transform:rotate(-2.5deg)"><div style="animation:jiggle 3.1s ease-in-out infinite"><img src="assets/story-1.jpeg" alt="Dario and his daughter kneading dough"></div></div>
+          <div class="collage-item" data-rot="2.5" style="align-self:flex-start;width:90%;transform:rotate(2.5deg)"><div style="animation:jiggle 3.8s ease-in-out infinite .15s"><img src="assets/story-7.jpeg" alt="Morning rush at the bakery counter"></div></div>
+          <div class="collage-item" data-rot="-1.8" style="align-self:flex-end;width:80%;transform:rotate(-1.8deg)"><div style="animation:jiggle 3.5s ease-in-out infinite .45s"><img src="assets/story-8.jpeg" alt="Pastries in the bakery display case"></div></div>
+          <div class="collage-item" data-rot="2.8" style="align-self:flex-start;width:86%;transform:rotate(2.8deg)"><div style="animation:jiggle 3.3s ease-in-out infinite .5s"><img src="assets/story-6.jpeg" alt="Baker pouring grain into a stone mill"></div></div>
+        </div>
+        <div class="story-box" data-story-box>
+          <p class="eyebrow">Our Story</p>
+          <h2>Two hands, one starter, and a daughter who stayed</h2>
+          <p>Dario Ferretti grew up in a bakehouse in Puglia, where the oven was lit before the sun and bread was a language of its own. He carried that starter, quite literally, to Melbourne, opening a single shopfront on Lygon Street in&nbsp;1996&nbsp;with little more than a mixer and stubborn hands.</p>
+          <p>Nine years on, the queue still forms before the doors open. What changed is who's behind the bench: his daughter, <em>figlia</em>, now works beside him, bringing new pastries and a second bakehouse in Brunswick East without ever rushing the ferment.</p>
+          <p>We prove long and cold, mill for flavour over yield, and bake in small batches through the day. Nothing here is quick. That's rather the point.</p>
+        </div>
+        <div class="story-col">
+          <div class="collage-item" data-rot="2.5" style="align-self:flex-start;width:82%;transform:rotate(2.5deg)"><div style="animation:jiggle 3.9s ease-in-out infinite .2s"><img src="assets/story-3.jpeg" alt="Handing a bag of bread to a customer"></div></div>
+          <div class="collage-item" data-rot="-2.5" style="align-self:flex-end;width:90%;transform:rotate(-2.5deg)"><div style="animation:jiggle 3.6s ease-in-out infinite .4s"><img src="assets/story-2.jpeg" alt="Baker drawing a loaf from the wood oven"></div></div>
+          <div class="collage-item" data-rot="1.8" style="align-self:flex-start;width:80%;transform:rotate(1.8deg)"><div style="animation:jiggle 3.4s ease-in-out infinite .6s"><img src="assets/story-4.jpeg" alt="Glazing an unbaked croissant"></div></div>
+          <div class="collage-item" data-rot="-2.8" style="align-self:flex-end;width:86%;transform:rotate(-2.8deg)"><div style="animation:jiggle 3.7s ease-in-out infinite .3s"><img src="assets/story-5.jpeg" alt="Child eating sourdough with jam"></div></div>
+        </div>
+      </div>
+      <div class="story-mobile">
+        <div class="m-2">
+          <div class="m-tile"><img src="assets/story-1.jpeg" alt="Dario and his daughter kneading dough"></div>
+          <div class="m-tile"><img src="assets/story-2.jpeg" alt="Baker drawing a loaf from the wood oven"></div>
+        </div>
+        <div class="m-text">
+          <p class="eyebrow">Our Story</p>
+          <h2>Two hands, one starter, and a daughter who stayed</h2>
+          <p>Dario Ferretti grew up in a bakehouse in Puglia, where the oven was lit before the sun and bread was a language of its own. He carried that starter, quite literally, to Melbourne, opening a single shopfront on Lygon Street in 1996 with little more than a mixer and stubborn hands.</p>
+          <p>Nine years on, the queue still forms before the doors open. What changed is who's behind the bench: his daughter, <em>figlia</em>, now works beside him, bringing new pastries and a second bakehouse in Brunswick East without ever rushing the ferment.</p>
+          <p>We prove long and cold, mill for flavour over yield, and bake in small batches through the day. Nothing here is quick. That's rather the point.</p>
+        </div>
+        <div class="m-6">
+          <div class="m-tile"><img src="assets/story-3.jpeg" alt="Handing a bag of bread to a customer"></div>
+          <div class="m-tile"><img src="assets/story-4.jpeg" alt="Glazing an unbaked croissant"></div>
+          <div class="m-tile"><img src="assets/story-5.jpeg" alt="Child eating sourdough with jam"></div>
+          <div class="m-tile"><img src="assets/story-6.jpeg" alt="Baker pouring grain into a stone mill"></div>
+          <div class="m-tile"><img src="assets/story-7.jpeg" alt="Morning rush at the bakery counter"></div>
+          <div class="m-tile"><img src="assets/story-8.jpeg" alt="Pastries in the bakery display case"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What we make -->
+  <section id="what" class="what">
+    <div class="what-wrap">
+      <div class="what-head">
+        <p class="eyebrow">What We Make</p>
+        <h2>Baked through the day, in small batches</h2>
+        <p>A rotating counter of breads, pastries and cakes, plus the seasonal bakes we only make when the calendar says so. Availability changes daily; call ahead for large orders.</p>
+      </div>
+      <div class="cat-chips">
+        <a href="#cat-pastries" class="chip"><img src="assets/icon-seasonal.png?v=2" alt="" width="26" height="26"><div class="c-t"><b>Pastries</b><span>Laminated each morning</span></div><span class="arw" aria-hidden="true">→</span></a>
+        <a href="#cat-breads" class="chip"><img src="assets/icon-pastries.png?v=2" alt="" width="26" height="26"><div class="c-t"><b>Breads</b><span>From our Puglian starter</span></div><span class="arw" aria-hidden="true">→</span></a>
+        <a href="#cat-cakes" class="chip"><img src="assets/icon-cakes.png?v=2" alt="" width="26" height="26"><div class="c-t"><b>Cakes</b><span>By the slice or whole</span></div><span class="arw" aria-hidden="true">→</span></a>
+        <a href="#cat-seasonal" class="chip"><img src="assets/icon-breads.png?v=2" alt="" width="26" height="26"><div class="c-t"><b>Seasonal</b><span>Here for a moment</span></div><span class="arw" aria-hidden="true">→</span></a>
+      </div>
+      <div id="catalog"></div>
+    </div>
+  </section>
+
+  <!-- Locations -->
+  <section id="locations" class="locations">
+    <div class="loc-wrap">
+      <div class="loc-head">
+        <p class="eyebrow">Locations &amp; Hours</p>
+        <h2>Come find us</h2>
+      </div>
+      <div class="loc-grid">
+        <div class="loc-card shine-card">
+          <div class="loc-photo">
+            <img src="assets/loc-carlton.jpeg" alt="Carlton shopfront on Lygon Street">
+            <div class="loc-grad"></div>
+            <div class="loc-body">
+              <div>
+                <p class="loc-tag">Flagship Shop</p>
+                <h3>Carlton</h3>
+                <p class="loc-addr">247 Lygon Street, Carlton VIC 3053</p>
+              </div>
+              <div class="loc-hours">
+                <span class="d">Tue – Fri</span><span class="t">7am – 4pm</span>
+                <span class="d">Sat – Sun</span><span class="t">7:30am – 3pm</span>
+                <span class="d">Monday</span><span class="t">Closed</span>
+              </div>
+              <a href="tel:+919399734130" class="loc-phone">+91 93997 34130</a>
+            </div>
+          </div>
+          <div class="loc-map">
+            <iframe title="Carlton map" src="https://maps.google.com/maps?q=247%20Lygon%20Street%20Carlton%20VIC&z=15&output=embed" loading="lazy"></iframe>
+            <a href="https://maps.google.com/maps?q=247%20Lygon%20Street%20Carlton%20VIC&z=15" target="_blank" rel="noopener" aria-label="Open Carlton in Google Maps"></a>
+          </div>
+        </div>
+        <div class="loc-card shine-card">
+          <div class="loc-photo">
+            <img src="assets/loc-brunswick.jpeg" alt="Brunswick East bakehouse &amp; café interior">
+            <div class="loc-grad"></div>
+            <div class="loc-body">
+              <div>
+                <p class="loc-tag">Bakehouse &amp; Café</p>
+                <h3>Brunswick East</h3>
+                <p class="loc-addr">18 Weston Street, Brunswick East VIC 3057</p>
+              </div>
+              <div class="loc-hours">
+                <span class="d">Wed – Fri</span><span class="t">7am – 3pm</span>
+                <span class="d">Sat – Sun</span><span class="t">8am – 2pm</span>
+                <span class="d">Mon – Tue</span><span class="t">Closed</span>
+              </div>
+              <a href="tel:+919575270453" class="loc-phone">+91 95752 70453</a>
+            </div>
+          </div>
+          <div class="loc-map">
+            <iframe title="Brunswick East map" src="https://maps.google.com/maps?q=18%20Weston%20Street%20Brunswick%20East%20VIC&z=15&output=embed" loading="lazy"></iframe>
+            <a href="https://maps.google.com/maps?q=18%20Weston%20Street%20Brunswick%20East%20VIC&z=15" target="_blank" rel="noopener" aria-label="Open Brunswick East in Google Maps"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer (imported from SiteFooter) -->
+<footer class="ff-foot">
+  <div class="ff-foot-inner">
+    <div class="ff-grid">
+      <div class="ff-brand">
+        <img src="assets/logo-trimmed.png" alt="Ferretti &amp; Figlia">
+        <p>Sourdough, pastries, and Italian tradition, baked fresh in Melbourne since 1996.</p>
+      </div>
+      <div class="ff-col">
+        <h4>Explore</h4>
+        <div class="ff-links">
+          <a href="#story">Our Story</a>
+          <a href="#what">What We Make</a>
+          <a href="#locations">Locations</a>
+          <a href="Wholesale.html" class="hl">Wholesale &amp; Catering</a>
+        </div>
+      </div>
+      <div class="ff-col">
+        <h4>Carlton</h4>
+        <p>247 Lygon Street<br>Carlton VIC 3053</p>
+        <p>Tue&ndash;Fri 7am&ndash;4pm<br>Sat&ndash;Sun 7:30am&ndash;3pm</p>
+        <a href="tel:+919399734130" class="phone">+91 93997 34130</a>
+      </div>
+      <div class="ff-col">
+        <h4>Brunswick East</h4>
+        <p>18 Weston Street<br>Brunswick East VIC 3057</p>
+        <p>Wed&ndash;Fri 7am&ndash;3pm<br>Sat&ndash;Sun 8am&ndash;2pm</p>
+        <a href="tel:+919575270453" class="phone">+91 95752 70453</a>
+      </div>
+      <div class="ff-col">
+        <h4>Get in touch</h4>
+        <div class="ff-links">
+          <a href="mailto:tejxshrivastava@gmail.com">hello@ferrettiandfiglia.com.au</a>
+          <a href="mailto:tejxshrivastava@gmail.com?subject=Wholesale%20enquiry" class="hl">wholesale@ferrettiandfiglia.com.au</a>
+          <div class="ff-social">
+            <a href="https://www.instagram.com/tejxshrivastva/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://tejasshrivastava.com" target="_blank" rel="noopener">Google listing</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ff-bottom">
+      <p>&copy; 2026 Ferretti &amp; Figlia. Made slowly in Melbourne.</p>
+      <p>ABN 00 000 000 000</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Sticky order cart -->
+<div class="cart-dock" data-cart-dock hidden>
+  <div class="cart-panel">
+    <div class="cart-list" data-cart-list hidden>
+      <div class="cart-list-head"><span>Your order</span><button type="button" data-cart-toggle aria-label="Close">✕</button></div>
+      <div data-cart-lines></div>
+    </div>
+    <div class="cart-bar">
+      <button type="button" class="cart-summary" data-cart-toggle>
+        <span class="lbl" data-cart-count>0 items</span>
+        <span class="tot" data-cart-total>$0</span>
+      </button>
+      <a class="cart-wa" data-cart-wa href="#" target="_blank" rel="noopener">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.16c-.24.68-1.42 1.32-1.95 1.36-.5.04-1.13.24-3.8-.79-3.2-1.26-5.24-4.53-5.4-4.74-.16-.21-1.3-1.73-1.3-3.3 0-1.57.82-2.34 1.11-2.66.3-.32.65-.4.87-.4.22 0 .43 0 .62.01.2.01.47-.08.73.56.27.65.9 2.24.98 2.4.08.16.13.35.02.56-.1.21-.16.35-.32.54-.16.19-.34.42-.48.56-.16.16-.33.34-.14.66.19.32.85 1.4 1.83 2.27 1.26 1.12 2.32 1.47 2.64 1.63.32.16.51.14.7-.08.19-.21.81-.94 1.03-1.27.21-.32.43-.27.72-.16.29.11 1.86.88 2.18 1.04.32.16.53.24.61.37.08.13.08.74-.16 1.42z"></path></svg>
+        Order via WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var isMobile = function(){ return window.innerWidth <= 900; };
+
+  /* ---------- Data ---------- */
+  var CATEGORIES = [
+    { label:'Pastries', anchor:'cat-pastries', note:'Laminated and filled through the morning.', items:[
+      {id:'p-cornetto',name:'Cornetto',ph:'Cornetto',desc:"Italy's croissant, softer, sweeter, brushed with vanilla.",price:5.5,kcal:240,unit:'each'},
+      {id:'p-sfogliatella',name:'Sfogliatella',ph:'Sfogliatella',desc:'Crisp, shell-shaped layers filled with orange ricotta.',price:6.5,kcal:300,unit:'each'},
+      {id:'p-bombolone',name:'Bombolone',ph:'Bombolone',desc:'Pillowy custard-filled doughnut, dusted in sugar.',price:6,kcal:320,unit:'each'},
+      {id:'p-cannolo',name:'Cannolo Siciliano',ph:'Cannoli',desc:'Filled to order with sweet ricotta and candied peel.',price:6.5,kcal:290,unit:'each'},
+      {id:'p-maritozzo',name:'Maritozzo',ph:'Maritozzo',desc:'A soft Roman bun, split and piled with whipped cream.',price:7,kcal:340,unit:'each'},
+      {id:'p-cioccolato',name:'Cornetto al Cioccolato',ph:'Chocolate cornetto',desc:'Our vanilla cornetto folded around dark chocolate.',price:6,kcal:310,unit:'each'}
+    ]},
+    { label:'Breads', anchor:'cat-breads', note:'From a starter Dario carried from Puglia.', items:[
+      {id:'b-panecasa',name:'Pane di Casa',ph:'Pane di Casa loaf',desc:'Our everyday loaf: 30-hour ferment, blistered crust, open crumb.',price:9,kcal:120,unit:'loaf'},
+      {id:'b-ciabatta',name:'Ciabatta',ph:'Ciabatta',desc:'Wet-dough and wood-fired, made for panini and mopping up sauce.',price:7.5,kcal:110,unit:'loaf'},
+      {id:'b-filone',name:'Filone',ph:'Filone loaf',desc:'A long, lean Tuscan-style loaf with a crisp, thin crust.',price:8,kcal:105,unit:'loaf'},
+      {id:'b-rye',name:'Rye Sourdough',ph:'Rye sourdough',desc:'Dark, dense and malty with a whisper of caraway.',price:10,kcal:130,unit:'loaf'},
+      {id:'b-focaccia',name:'Focaccia Genovese',ph:'Focaccia tray',desc:'Dimpled and olive-oil rich, finished with rosemary and sea salt.',price:8,kcal:180,unit:'slab'},
+      {id:'b-grissini',name:'Grissini',ph:'Grissini breadsticks',desc:'Hand-rolled breadsticks, snapped fresh each morning.',price:6,kcal:90,unit:'bundle'}
+    ]},
+    { label:'Cakes', anchor:'cat-cakes', note:'By the slice or whole, to order.', items:[
+      {id:'c-nonna',name:'Torta della Nonna',img:true,ph:'Torta della Nonna',desc:'Shortcrust, lemon custard, pine nuts and icing sugar.',price:9,kcal:380,unit:'slice'},
+      {id:'c-tiramisu',name:'Tiramisù',ph:'Tiramisù',desc:'Espresso-soaked savoiardi, mascarpone and cocoa.',price:9.5,kcal:410,unit:'slice'},
+      {id:'c-ricotta',name:'Ricotta & Pear',img:true,ph:'Ricotta and pear cake',desc:'Baked ricotta cake studded with poached pear.',price:9,kcal:350,unit:'slice'},
+      {id:'c-crostata',name:'Crostata di Frutta',img:true,ph:'Fruit crostata',desc:'A buttery tart shell with seasonal fruit and vanilla cream.',price:8.5,kcal:330,unit:'slice'},
+      {id:'c-caprese',name:'Torta Caprese',img:true,ph:'Torta Caprese',desc:'Flourless dark chocolate and almond cake, dense and fudgy.',price:9.5,kcal:420,unit:'slice'},
+      {id:'c-millefoglie',name:'Millefoglie',img:true,ph:'Millefoglie',desc:'Crisp puff pastry layered with vanilla Chantilly cream.',price:9,kcal:390,unit:'slice'}
+    ]},
+    { label:'Seasonal', anchor:'cat-seasonal', note:'Here for a moment, then gone until next year.', items:[
+      {id:'s-panettone',name:'Panettone',img:true,ph:'Panettone',desc:'Christmas only, a three-day rise with candied citrus and sultanas.',price:42,kcal:360,unit:'1kg'},
+      {id:'s-colomba',name:'Colomba di Pasqua',img:true,ph:'Colomba',desc:'Our Easter dove: almond-glazed and orange-scented.',price:38,kcal:340,unit:'750g'},
+      {id:'s-castagnaccio',name:'Castagnaccio',img:true,ph:'Chestnut cake',desc:'An autumn chestnut cake with rosemary, pine nuts and raisins.',price:8,kcal:300,unit:'slice'},
+      {id:'s-fico',name:'Fig & Almond Crostata',img:true,ph:'Fig crostata',desc:'Late-summer figs on almond frangipane.',price:9,kcal:370,unit:'slice'},
+      {id:'s-zeppole',name:'Zeppole di San Giuseppe',img:true,ph:'Zeppole',desc:"Father's Day choux, filled with custard and topped with amarena.",price:7.5,kcal:330,unit:'each'},
+      {id:'s-pandoro',name:'Pandoro',img:true,ph:'Pandoro',desc:'A golden Christmas star, dusted in vanilla-scented sugar.',price:40,kcal:350,unit:'750g'}
+    ]}
+  ];
+  var BY_ID = {};
+  CATEGORIES.forEach(function(c){ c.items.forEach(function(it){ BY_ID[it.id]=it; }); });
+  var cart = {};
+  var cartOpen = false;
+  var money = function(n){ return '$' + (Number.isInteger(n) ? n : n.toFixed(2)); };
+  var esc = function(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); };
+
+  /* ---------- Build catalog ---------- */
+  (function(){
+    var root = document.getElementById('catalog');
+    CATEGORIES.forEach(function(cat){
+      var block = document.createElement('div');
+      block.className = 'cat-block';
+      block.id = cat.anchor;
+      block.innerHTML =
+        '<div class="cat-block-head"><h3>' + esc(cat.label) + '</h3><p>' + esc(cat.note) + '</p></div>' +
+        '<div class="prod-grid"></div>';
+      var grid = block.querySelector('.prod-grid');
+      cat.items.forEach(function(it){
+        var art = document.createElement('article');
+        art.className = 'prod shine-card';
+        art.dataset.id = it.id;
+        // Every product tries assets/<id>.jpeg; if it's not there yet, the img hides
+        // itself and the ceramic label tile shows through as a graceful fallback.
+        var slot = '<div class="slot"><span class="slot-ph">' + esc(it.ph) + '</span><img src="assets/' + it.id + '.jpeg" alt="' + esc(it.name) + '" loading="lazy" onerror="this.style.display=\'none\'"></div>';
+        art.innerHTML =
+          slot +
+          '<div class="prod-body">' +
+            '<div class="prod-name"><span class="veg"><span></span></span><h4>' + esc(it.name) + '</h4></div>' +
+            '<p class="prod-desc">' + esc(it.desc) + '</p>' +
+            '<p class="prod-meta">' + it.kcal + ' kcal · per ' + esc(it.unit) + '</p>' +
+            '<div class="prod-foot"><span class="prod-price">' + money(it.price) + '</span><span class="prod-action"></span></div>' +
+          '</div>';
+        grid.appendChild(art);
+      });
+      root.appendChild(block);
+    });
+    renderControls();
+  })();
+
+  function controlHTML(id){
+    var qty = cart[id] || 0;
+    if (qty > 0){
+      return '<span class="stepper"><button type="button" data-dec="' + id + '" aria-label="Remove one">−</button>' +
+             '<span>' + qty + '</span>' +
+             '<button type="button" data-inc="' + id + '" aria-label="Add one">+</button></span>';
+    }
+    return '<button type="button" class="btn-add" data-add="' + id + '">Add +</button>';
+  }
+  function renderControls(){
+    document.querySelectorAll('.prod').forEach(function(p){
+      var a = p.querySelector('.prod-action');
+      if (a) a.innerHTML = controlHTML(p.dataset.id);
+    });
+  }
+
+  /* ---------- Cart actions (event delegation) ---------- */
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('[data-add],[data-inc],[data-dec],[data-cart-toggle]');
+    if (!t) return;
+    if (t.hasAttribute('data-cart-toggle')){ cartOpen = !cartOpen; updateCart(); return; }
+    var id = t.getAttribute('data-add') || t.getAttribute('data-inc') || t.getAttribute('data-dec');
+    if (!id) return;
+    if (t.hasAttribute('data-dec')){
+      var n = (cart[id] || 0) - 1;
+      if (n <= 0){ delete cart[id]; if (!Object.keys(cart).length) cartOpen = false; }
+      else cart[id] = n;
+    } else {
+      cart[id] = (cart[id] || 0) + 1;
+    }
+    renderControls();
+    updateCart();
+  });
+
+  /* ---------- Sticky cart bar ---------- */
+  var dock = document.querySelector('[data-cart-dock]');
+  var listWrap = document.querySelector('[data-cart-list]');
+  var linesEl = document.querySelector('[data-cart-lines]');
+  function updateCart(){
+    var ids = Object.keys(cart);
+    var count = 0, total = 0;
+    ids.forEach(function(id){ count += cart[id]; total += BY_ID[id].price * cart[id]; });
+    dock.hidden = count === 0;
+    document.querySelector('[data-cart-count]').textContent = count + (count === 1 ? ' item' : ' items');
+    document.querySelector('[data-cart-total]').textContent = money(total);
+    listWrap.hidden = !(cartOpen && count > 0);
+    if (!listWrap.hidden){
+      linesEl.innerHTML = ids.map(function(id){
+        var it = BY_ID[id], qty = cart[id];
+        return '<div class="cart-line"><div class="info">' +
+          '<p class="n">' + esc(it.name) + '</p>' +
+          '<p class="s">' + money(it.price) + '/' + esc(it.unit) + ' · ' + money(it.price * qty) + '</p></div>' +
+          '<span class="stepper"><button type="button" data-dec="' + id + '">−</button><span>' + qty + '</span><button type="button" data-inc="' + id + '">+</button></span>' +
+          '</div>';
+      }).join('');
+    }
+    // WhatsApp link
+    var msg = 'Ciao Ferretti & Figlia! I’d like to order:%0A';
+    ids.forEach(function(id){ var it = BY_ID[id]; msg += '%0A• ' + cart[id] + ' × ' + it.name + ' (' + money(it.price * cart[id]) + ')'; });
+    msg += '%0A%0ATotal: ' + money(total) + '%0A%0AName:%0APickup location:%0APickup time:';
+    document.querySelector('[data-cart-wa]').href = 'https://wa.me/919575270453?text=' + msg;
+  }
+  updateCart();
+
+  /* ---------- Mobile menu ---------- */
+  (function(){
+    var toggle = document.querySelector('[data-menu-toggle]');
+    var menu = document.querySelector('[data-mobile-menu]');
+    if (!toggle || !menu) return;
+    toggle.addEventListener('click', function(){
+      var open = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menu.querySelectorAll('[data-menu-close]').forEach(function(a){
+      a.addEventListener('click', function(){ menu.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); });
+    });
+  })();
+
+  /* ---------- Floating nav shrink ---------- */
+  (function(){
+    var bar = document.querySelector('[data-nav-bar]');
+    if (!bar) return;
+    function onScroll(){
+      var w = window.innerWidth, shrink = window.scrollY > 40;
+      bar.style.maxWidth = w > 1024 ? (shrink ? '55%' : '70%') : w > 700 ? (shrink ? '80%' : '88%') : (shrink ? '90%' : '95%');
+      bar.style.boxShadow = shrink ? '0 14px 40px rgba(70,50,57,.22)' : '0 8px 30px rgba(70,50,57,.12)';
+      bar.style.background = shrink ? 'rgba(255,255,255,.98)' : 'rgba(255,255,255,.92)';
+    }
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive:true });
+    window.addEventListener('resize', onScroll);
+  })();
+
+  /* ---------- Hero video ---------- */
+  (function(){
+    var v = document.getElementById('heroVideo');
+    if (!v) return;
+    v.muted = true; v.loop = true; v.playsInline = true;
+    var go = function(){ var p = v.play(); if (p && p.catch) p.catch(function(){}); };
+    if (v.readyState >= 2) go(); else v.addEventListener('loadeddata', go, { once:true });
+  })();
+
+  /* ---------- Hash scroll (fixed-nav offset) ---------- */
+  (function(){
+    var scrollToHash = function(smooth){
+      var id = (location.hash || '').slice(1);
+      if (!id) return;
+      var el = document.getElementById(id);
+      if (!el) return;
+      var y = el.getBoundingClientRect().top + window.scrollY - 84;
+      window.scrollTo({ top:y, behavior: smooth ? 'smooth' : 'auto' });
+    };
+    if (location.hash) setTimeout(function(){ scrollToHash(false); }, 60);
+    window.addEventListener('hashchange', function(){ scrollToHash(true); });
+  })();
+
+  /* ---------- Card shine sweep ---------- */
+  (function(){
+    var blocks = [].slice.call(document.querySelectorAll('#what [id^="cat-"], #locations'));
+    if (!blocks.length) return;
+    var io = new IntersectionObserver(function(ents){
+      ents.forEach(function(en){
+        if (!en.isIntersecting) return;
+        var cards = [].slice.call(en.target.querySelectorAll('.shine-card'));
+        cards.forEach(function(c, i){ c.classList.remove('go'); void c.offsetWidth; setTimeout(function(){ c.classList.add('go'); }, i * 85); });
+      });
+    }, { threshold: 0.22 });
+    blocks.forEach(function(b){ io.observe(b); });
+  })();
+
+  /* ---------- Draggable collage ---------- */
+  var dragEl = null;
+  (function(){
+    var active = null, sx = 0, sy = 0;
+    var rot = function(el){ return parseFloat(el.dataset.rot || 0); };
+    document.addEventListener('pointerdown', function(e){
+      var el = e.target.closest && e.target.closest('.collage-item');
+      if (!el) return;
+      active = el; sx = e.clientX; sy = e.clientY; dragEl = el;
+      el.style.transition = 'none'; el.style.zIndex = '30';
+      try { el.setPointerCapture(e.pointerId); } catch(_){}
+    });
+    document.addEventListener('pointermove', function(e){
+      if (!active) return;
+      active.style.transform = 'translate(' + (e.clientX - sx) + 'px,' + (e.clientY - sy) + 'px) rotate(' + rot(active) + 'deg)';
+    });
+    var up = function(){
+      if (!active) return;
+      var el = active; active = null; dragEl = null;
+      el.style.transition = 'transform .55s cubic-bezier(.34,1.56,.64,1)';
+      el.style.transform = 'rotate(' + rot(el) + 'deg)';
+      setTimeout(function(){ el.style.zIndex = ''; }, 550);
+    };
+    document.addEventListener('pointerup', up);
+    document.addEventListener('pointercancel', up);
+  })();
+
+  /* ---------- Scroll-driven collage scatter/gather ---------- */
+  (function(){
+    var section = document.getElementById('story');
+    if (!section) return;
+    var rotOf = function(el){ return parseFloat(el.dataset.rot || 0); };
+    var REF = 470;
+    var anc = [[-207,-352,0.60],[-44,-180,0.66],[-228,-75,0.62],[-126,246,0.60],[194,-304,0.63],[244,-57,0.67],[-10,68,0.56],[172,245,0.61]];
+    var collage = null, raf = 0;
+    var measure = function(){
+      var box = section.querySelector('[data-story-box]');
+      var items = [].slice.call(section.querySelectorAll('.story-desktop .collage-item'));
+      if (!box || items.length < 8) return null;
+      items.forEach(function(el){ el.style.transition = 'none'; el.style.transform = 'rotate(' + rotOf(el) + 'deg)'; });
+      var br = box.getBoundingClientRect();
+      var bcx = br.left + br.width / 2, bcy = br.top + br.height / 2;
+      var k = br.width / REF;
+      return items.map(function(el, i){
+        var a = anc[i] || [0,0,0.6];
+        var tx = bcx + a[0] * k, ty = bcy + a[1] * k;
+        var r = el.getBoundingClientRect();
+        var s = (a[2] * br.width) / r.width;
+        return { el:el, i:i, dx: tx - (r.left + r.width/2), dy: ty - (r.top + r.height/2), s:s, rot: rotOf(el) };
+      });
+    };
+    var apply = function(){
+      raf = 0;
+      if (isMobile()) return;
+      if (!collage) collage = measure();
+      if (!collage) return;
+      var rect = section.getBoundingClientRect();
+      var sc = rect.top + rect.height / 2, vc = window.innerHeight / 2;
+      var range = window.innerHeight * 0.62;
+      var t = Math.min(Math.abs(sc - vc) / range, 1);
+      t = t * t * (3 - 2 * t);
+      collage.forEach(function(d){
+        if (d.el === dragEl) return;
+        var sc2 = (1 + (d.s - 1) * t).toFixed(3);
+        d.el.style.transition = 'none';
+        d.el.style.transform = 'translate(' + (d.dx * t).toFixed(1) + 'px,' + (d.dy * t).toFixed(1) + 'px) scale(' + sc2 + ') rotate(' + d.rot.toFixed(2) + 'deg)';
+        d.el.style.zIndex = t > 0.4 ? String(40 - d.i) : '2';
+      });
+    };
+    var onScroll = function(){ if (!raf) raf = requestAnimationFrame(apply); };
+    window.addEventListener('scroll', onScroll, { passive:true });
+    window.addEventListener('resize', function(){ collage = null; onScroll(); });
+    requestAnimationFrame(function(){ collage = null; apply(); });
+  })();
+
+  /* ---------- Text reveal ---------- */
+  (function(){
+    try {
+      var skip = function(el){ return el.closest('[data-nav-bar], header, form, [data-reveal-skip]'); };
+      var fire = function(el){
+        if (el.__parts) el.__parts.forEach(function(w, i){ w.style.transitionDelay = (i * (el.__step || 30)) + 'ms'; w.classList.add('in'); });
+        else el.classList.add('in');
+      };
+      var io = new IntersectionObserver(function(ents){
+        ents.forEach(function(en){ if (en.isIntersecting){ fire(en.target); io.unobserve(en.target); } });
+      }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+      var register = function(el){
+        var r = el.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < window.innerHeight * 0.94) fire(el); else io.observe(el);
+      };
+      var split = function(el, mode, step){
+        if (skip(el) || el.children.length || !el.textContent.trim()) return;
+        var text = el.textContent; el.textContent = ''; var parts = [];
+        if (mode === 'letter'){
+          text.split(/(\s+)/).forEach(function(word){
+            if (word === '') return;
+            if (/^\s+$/.test(word)){ el.appendChild(document.createTextNode(word)); return; }
+            var wrap = document.createElement('span'); wrap.className = 'reveal-word';
+            for (var i = 0; i < word.length; i++){ var s = document.createElement('span'); s.className = 'reveal-w'; s.textContent = word[i]; wrap.appendChild(s); parts.push(s); }
+            el.appendChild(wrap);
+          });
+        } else {
+          text.split(/(\s+)/).forEach(function(tk){
+            if (/^\s+$/.test(tk)){ el.appendChild(document.createTextNode(tk)); return; }
+            if (tk === '') return;
+            var s = document.createElement('span'); s.className = 'reveal-w'; s.textContent = tk; el.appendChild(s); parts.push(s);
+          });
+        }
+        el.__parts = parts; el.__step = step; register(el);
+      };
+      document.querySelectorAll('h1, h2, h3').forEach(function(el){ split(el, 'letter', 18); });
+      document.querySelectorAll('p, li, blockquote').forEach(function(el){
+        if (skip(el) || !el.textContent.trim()) return;
+        var up = getComputedStyle(el).textTransform === 'uppercase';
+        if (up && el.textContent.trim().length <= 60) split(el, 'letter', 26); else split(el, 'word', 32);
+      });
+      document.querySelectorAll('article, .shine-card, [href^="#cat-"]').forEach(function(el){
+        if (skip(el)) return; el.classList.add('reveal-soft'); register(el);
+      });
+    } catch(err){ /* progressive enhancement */ }
+  })();
+})();
+</script>
+</body>
+</html>
